@@ -32,7 +32,18 @@ db.once('open', async () => {
       };
     });
 
-    await User.create(usersWithCustomers);
+    const createdUsers = await User.create(usersWithCustomers);
+
+    // Update customers with assigned users
+    for (let i = 0; i < createdUsers.length; i++) {
+      const user = createdUsers[i];
+      const assignedCustomers = user.customers;
+
+      await Customer.updateMany(
+        { _id: { $in: assignedCustomers } },
+        { $set: { user: user._id } }
+      );
+    }
 
     console.log('Data seeded!');
     process.exit(0);
