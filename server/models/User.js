@@ -13,6 +13,11 @@ const userSchema = new Schema({
         required: true,
         minlength: 5
     },
+    // Reference to the Customer model
+    customer: {
+        type: Schema.Types.ObjectId,
+        ref: 'Customer'
+    }
 });
 
 const User = model('User', userSchema);

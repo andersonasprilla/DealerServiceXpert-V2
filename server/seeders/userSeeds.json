@@ -1,16 +1,13 @@
 [
     {
-        "id": 1,
         "email": "luis@gmail.com",
         "password": "123456"
     },
     {
-        "id": 1,
         "email": "anica@gmail.com",
         "password": "123456"
     },
     {
-        "id": 1,
         "email": "matt@gmail.com",
         "password": "123456"
     }
