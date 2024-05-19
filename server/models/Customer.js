@@ -52,6 +52,8 @@ const customerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
+}, {
+    versionKey: false // Remove the __v field
 }); 
 
 // Pre-save middleware to format customer name

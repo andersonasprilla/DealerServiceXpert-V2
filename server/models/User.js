@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
-
     email: {
         type: String,
         required: true,
@@ -14,10 +13,12 @@ const userSchema = new Schema({
         minlength: 5
     },
     // Reference to the Customer model
-    customer: {
+    customers: [{
         type: Schema.Types.ObjectId,
         ref: 'Customer'
-    }
+    }]
+}, {
+    versionKey: false // Remove the __v field
 });
 
 const User = model('User', userSchema);
