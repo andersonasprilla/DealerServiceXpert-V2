@@ -1,10 +1,7 @@
 const { Schema, model } = require('mongoose');
+const capitalizeName = require('../utils/capitalizeName');
 
-// Helper function to format names
-function capitalizeName(name) {
-    return name.replace(/\b\w/g, char => char.toUpperCase()).toLowerCase();
-}
-
+// Define the customer schema
 const customerSchema = new Schema({
     hatNumber: {
         required: true,
@@ -41,27 +38,27 @@ const customerSchema = new Schema({
         default: 'Drop Off',
     },
     status: {
-        required: true,
         type: String,
         enum: ['Checked In', 'In Repair', 'Finished'],
         default: 'Checked In',
     },
-
-    // Reference to the User model
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
 }, {
     versionKey: false // Remove the __v field
-}); 
+});
 
 // Pre-save middleware to format customer name
 customerSchema.pre('save', function(next) {
-    this.customerName = capitalizeName(this.customerName);
+    if (this.isModified('customerName')) {
+        this.customerName = capitalizeName(this.customerName);
+    }
     next();
 });
 
+// Create the model
 const Customer = model('Customer', customerSchema);
 
 module.exports = Customer;

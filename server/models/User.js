@@ -1,6 +1,18 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, set } = require('mongoose');
+const capitalizeName = require('../utils/capitalizeName');
 
 const userSchema = new Schema({
+    userName: {
+        type: String,
+        required: true,
+        set: capitalizeName
+    },
+    role: {
+        type: String,
+        required: true,
+        enum: ['Service Advisor', 'Manager'],
+        default: 'Service Advisor'
+    },
     email: {
         type: String,
         required: true,
@@ -19,6 +31,14 @@ const userSchema = new Schema({
     }]
 }, {
     versionKey: false // Remove the __v field
+});
+
+// Pre-save middleware to format customer name
+userSchema.pre('save', function(next) {
+    if (this.isModified('username')) {
+        this.username = capitalizeName(this.username);
+    }
+    next();
 });
 
 const User = model('User', userSchema);

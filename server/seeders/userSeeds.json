@@ -1,15 +1,26 @@
 [
     {
+        "userName": "luiS asprilla",
         "email": "luis@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "role": "Service Advisor"
     },
     {
+        "userName": "anica barrios",
         "email": "anica@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "role": "Service Advisor"
     },
     {
+        "userName": "matthew gonzalez",
         "email": "matt@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "role": "Service Advisor"
+    },
+    {
+        "userName": "john boss",
+        "email": "boss@gmail.com",
+        "password": "123456",
+        "role": "Manager"
     }
-
 ]
