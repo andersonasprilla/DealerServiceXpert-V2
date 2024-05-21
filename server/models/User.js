@@ -1,5 +1,6 @@
 const { Schema, model, set } = require('mongoose');
 const capitalizeName = require('../utils/capitalizeName');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
     userName: {
@@ -41,6 +42,9 @@ userSchema.pre('save', function(next) {
     next();
 });
 
+userSchema.methods.isCorrectPassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+  };
 const User = model('User', userSchema);
 
 module.exports = User;
