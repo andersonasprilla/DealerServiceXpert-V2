@@ -44,7 +44,8 @@ const customerSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        default: null
     }
 }, {
     versionKey: false // Remove the __v field
