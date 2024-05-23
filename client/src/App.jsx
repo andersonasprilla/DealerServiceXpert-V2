@@ -1,9 +1,13 @@
-import Home from './components/Home/Home'
+import Table from "./components/Table/Table"
 
 function App() {
 
   return (
-    <Home/>
+    <>
+     < Table />
+    </>
+   
   )
 }
+
 export default App
