@@ -11,6 +11,26 @@ const customers = [
       priority: "Drop Off",
       status: "Checked In",
     },
+    {
+      hatNumber: 'T6980',
+      repairOrder: '896322',
+      openedAt: '2d 4h',
+      customerName: 'John Doe',
+      vehicle: 'Pilot 2024',
+      contact: '(954)-325-9966',
+      priority: "Waiter",
+      status: "Checked In",
+    },
+    {
+      hatNumber: 'T6980',
+      repairOrder: '896322',
+      openedAt: '2d 4h',
+      customerName: 'John Doe',
+      vehicle: 'Pilot 2024',
+      contact: '(954)-325-9966',
+      priority: "Waiter",
+      status: "Checked In",
+    },
 
 
     
