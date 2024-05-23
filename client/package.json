@@ -15,7 +15,8 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-svg": "^16.1.34"
+    "react-svg": "^16.1.34",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

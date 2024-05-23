@@ -31,7 +31,6 @@ const customers = [
       priority: "Drop Off",
       status: "Checked In",
     },
-    
 
 
     
