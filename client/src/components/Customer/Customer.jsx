@@ -11,16 +11,8 @@ const customers = [
       priority: "Drop Off",
       status: "Checked In",
     },
-    {
-      hatNumber: 'T6980',
-      repairOrder: '896322',
-      openedAt: '2d 4h',
-      customerName: 'John Doe',
-      vehicle: 'Pilot 2024',
-      contact: '(954)-325-9966',
-      priority: "Drop Off",
-      status: "Checked In",
-    },
+
+
     
     
     // More customers...
@@ -53,7 +45,9 @@ const customers = [
               </div>
               <div> 
                     <div className="  mt-1 text-gray-500">Priority</div>
-                    <div className="mt-2 text-gray-900">{customer.priority}</div>
+                    <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-500' : 'text-gray-900'}`}>
+                            {customer.priority}
+                        </div>
               </div>
               <div className="ml-3"> 
                     <Dropdown />
