@@ -1,14 +1,9 @@
-import { useState } from 'react'
-import Sidebar from './components/Sidebar/Sidebar'
-
+import Home from './components/Home/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Sidebar/>
-  
+    <Home/>
   )
 }
-
 export default App
