@@ -16,12 +16,12 @@ const customers = [
     // More customers...
   ]
   
-  const Test = () => {
+  const Customer = () => {
     return (
-      <div className="px-4 sm:px-6 lg:px-8 shadow-lg rounded-3xl">
+      <div className=" shadow-lg rounded-3xl">
         <div className="mt-8 flow-root">
           {customers.map((customer, index) => (
-            <div key={index} className=" test-sm py-5 pl-4 pr-3 whitespace-nowrap flex min-w-full sm:px-6 lg:px-8 h-auto space-x-6 text-left font-medium sm:pl-0">
+            <div key={index} className="  p-5  whitespace-nowrap flex min-w-full sm:px-6 lg:px-8 h-auto space-x-6 text-left font-medium sm:pl-0">
               <div> 
                     <div className="  mt-1 text-gray-500 ">Hat</div>
                     <div className="mt-2 text-gray-900 ">{customer.hatNumber}</div>
@@ -46,7 +46,7 @@ const customers = [
                     <div className="  mt-1 text-gray-500">Priority</div>
                     <div className="mt-2 text-gray-900">{customer.priority}</div>
               </div>
-              <div > 
+              <div className="ml-3"> 
                     <Dropdown />
               </div>
               
@@ -57,4 +57,4 @@ const customers = [
     );
   };
 
-export default Test
+export default Customer

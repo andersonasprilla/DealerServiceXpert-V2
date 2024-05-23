@@ -1,10 +1,10 @@
-import Table from "./components/Table/Table"
+import Customer from "./components/Customer/Customer"
 
 function App() {
 
   return (
     <>
-     < Table />
+     <Customer />
     </>
    
   )

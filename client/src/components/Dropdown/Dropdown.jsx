@@ -8,7 +8,7 @@ function classNames(...classes) {
 
 const Dropdown = () => {
   return (
-    <div className="flex items-center justify-center h-full relative">
+    <div className="flex items-center justify-center h-full relative ml-3">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 shadow-sm ring-1 ring-inset ring-blue-600/20 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
