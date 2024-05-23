@@ -18,7 +18,7 @@ const customers = [
       customerName: 'John Doe',
       vehicle: 'Pilot 2024',
       contact: '(954)-325-9966',
-      priority: "Waiter",
+      priority: "Drop Off",
       status: "Checked In",
     },
     {
@@ -28,9 +28,10 @@ const customers = [
       customerName: 'John Doe',
       vehicle: 'Pilot 2024',
       contact: '(954)-325-9966',
-      priority: "Waiter",
+      priority: "Drop Off",
       status: "Checked In",
     },
+    
 
 
     
@@ -66,10 +67,10 @@ const customers = [
               <div> 
                     <div className="  mt-1 text-gray-500">Priority</div>
                     <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-500' : 'text-gray-900'}`}>
-                            {customer.priority}
+                          {customer.priority}
                         </div>
               </div>
-              <div className="ml-3"> 
+              <div > 
                     <Dropdown />
               </div>
               
@@ -80,3 +81,4 @@ const customers = [
   };
 
 export default Customer
+  

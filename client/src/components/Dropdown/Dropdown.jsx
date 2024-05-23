@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import getStatusClasses from '../helper/getStatusClasses';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -13,18 +14,6 @@ const Dropdown = () => {
     setStatus(newStatus);
   }
 
-  const getStatusClasses = (status) => {
-    switch (status) {
-      case 'In Repair':
-        return 'bg-red-50 text-red-700 ring-red-600/20 hover:bg-red-100 focus:ring-red-500';
-      case 'Finished':
-      case 'Back Order':
-        return 'bg-green-50 text-green-700 ring-green-600/20 hover:bg-green-100 focus:ring-green-500';
-      default:
-        return 'bg-blue-50 text-blue-700 ring-blue-600/20 hover:bg-blue-100 focus:ring-blue-500';
-    }
-  }
-
   return (
     <div className="flex items-center justify-center h-full relative ml-3">
       <Menu as="div" className="relative inline-block text-left">
@@ -34,7 +23,7 @@ const Dropdown = () => {
             getStatusClasses(status)
           )}>
             <span className="truncate">{status}</span>
-            <ChevronDownIcon className="-mr-1 h-5 w-5 text-blue-400" aria-hidden="true" />
+            <ChevronDownIcon className="-mr-1 h-5 w-5 " aria-hidden="true" />
           </Menu.Button>
         </div>
         <Transition
