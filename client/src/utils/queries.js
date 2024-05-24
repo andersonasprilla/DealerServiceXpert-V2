@@ -17,3 +17,11 @@ query Me {
   }
 
 `;
+export const QUERY_USER=gql`
+query Users {
+  users {
+    userName
+    email
+  }
+}
+`;

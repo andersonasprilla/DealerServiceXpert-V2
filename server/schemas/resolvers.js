@@ -9,13 +9,22 @@ const resolvers = {
         return User.findById(context.user._id).populate('customers');
       }
       throw new AuthenticationError('Not logged in');
+    },
+    users: async (parent, args, context) => {
+      if (context.user && context.user.role === 'manager') {
+        return User.find().populate('users');
+      }
+      throw new AuthenticationError('Not authorized');
     }
   },
   Mutation: {
-    addUser: async (parent, { userName, role, email, password }) => {
-      const user = await User.create({ userName, role, email, password });
-      const token = signToken(user);
-      return { token, user };
+    addUser: async (parent, { userName, role, email, password }, context) => {
+      if (context.user && context.user.role === 'manager') {
+        const user = await User.create({ userName, role, email, password });
+        const token = signToken(user);
+        return { token, user };
+      }
+      throw new AuthenticationError('Not authorized');
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -33,26 +42,28 @@ const resolvers = {
       const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority, status, user: userId });
       await User.findByIdAndUpdate(userId, { $push: { customers: customer._id } });
       return customer;
-      
     },
     updateCustomerStatus: async (parent, { customerId, status }) => {
-      const validStatuses = ['Checked In', 'In Repair', 'Finished'];
+      const validStatuses = ['Checked In', 'In Repair', 'Finished', 'Back Order'];
       if (!validStatuses.includes(status)) {
         throw new Error('Invalid status');
       }
       const customer = await Customer.findByIdAndUpdate(customerId, { status }, { new: true });
       return customer;
     },
-    deleteUser: async (parent, { userId }) => {
-      const user = await User.findById(userId);
-      if (!user) {
-        throw new AuthenticationError('User not found');
+    deleteUser: async (parent, { userId }, context) => {
+      if (context.user && context.user.role === 'manager') {
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new AuthenticationError('User not found');
+        }
+        for (const customerId of user.customers) {
+          await Customer.findByIdAndUpdate(customerId, { user: null });
+        }
+        await User.findByIdAndDelete(userId);
+        return `User with id ${userId} deleted`;
       }
-      user.customers.forEach(async (customerId) => {
-        await Customer.findByIdAndUpdate(customerId, { user: null });
-      });
-      await User.findByIdAndDelete(userId);
-      return `User with id ${userId} deleted`;
+      throw new AuthenticationError('Not authorized');
     }
   }
 };
