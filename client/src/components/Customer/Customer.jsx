@@ -40,9 +40,11 @@ const customers = [
   
   const Customer = () => {
     return (   
-        <div className="mt-8 flow-root">
+      
+        <div className="  flex  justify-center ml-20 mt-6">
+          <div className="inline-block ">
           {customers.map((customer, index) => (
-            <div key={index} className="  p-5  whitespace-nowrap flex min-w-full sm:px-6 lg:px-8 h-auto space-x-6 text-left font-medium sm:pl-0 mb-3 shadow-lg rounded-3xl">
+            <div key={index} className=" p-5 whitespace-nowrap flex min-w-full sm:px-6 lg:px-8 h-auto space-x-6 text-left font-medium sm:pl-0 mb-3 shadow-lg rounded-3xl">
               <div> 
                     <div className="  mt-1 text-gray-500 ">Hat</div>
                     <div className="mt-2 text-gray-900 ">{customer.hatNumber}</div>
@@ -60,6 +62,10 @@ const customers = [
                     <div className="mt-2 text-gray-900">{customer.customerName}</div>
               </div>
               <div> 
+                    <div className="  mt-1 text-gray-500">Vehicle</div>
+                    <div className="mt-2 text-gray-900">{customer.vehicle}</div>
+              </div>
+              <div> 
                     <div className="  mt-1 text-gray-500">Contact</div>
                     <div className="mt-2 text-gray-900">{customer.contact}</div>
               </div>
@@ -75,6 +81,7 @@ const customers = [
               
             </div>
           ))}
+        </div>
         </div>
     );
   };
