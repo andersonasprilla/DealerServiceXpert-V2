@@ -39,9 +39,10 @@ const customerSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['Checked In', 'In Repair', 'Finished'],
+        enum: ['Checked In', 'In Repair', 'Finished', 'Back Order'],
         default: 'Checked In',
     },
+    
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
