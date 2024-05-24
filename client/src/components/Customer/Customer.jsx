@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 
 const customers = [
@@ -39,7 +40,9 @@ const customers = [
   ]
   
   const Customer = () => {
-    return (   
+
+    return ( 
+    
       
         <div className="  flex  justify-center ml-20 mt-6">
           <div className="inline-block ">
