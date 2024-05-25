@@ -1,80 +1,44 @@
 import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
+import customers from "../../../../server/seeders/customerSeeds.json";
 
-const customers = [
-    {
-      hatNumber: 'T6980',
-      repairOrder: '896322',
-      openedAt: '2d 4h',
-      customerName: 'John Doe',
-      vehicle: 'Pilot 2024',
-      contact: '(954)-325-9966',
-      priority: "Drop Off",
-      status: "Checked In",
-    },
-    {
-      hatNumber: 'T6980',
-      repairOrder: '896322',
-      openedAt: '2d 4h',
-      customerName: 'John Doe',
-      vehicle: 'Pilot 2024',
-      contact: '(954)-325-9966',
-      priority: "Drop Off",
-      status: "Checked In",
-    },
-    {
-      hatNumber: 'T6980',
-      repairOrder: '896322',
-      openedAt: '2d 4h',
-      customerName: 'John Doe',
-      vehicle: 'Pilot 2024',
-      contact: '(954)-325-9966',
-      priority: "Drop Off",
-      status: "Checked In",
-    },
-
-
-    
-    
-    // More customers...
-  ]
   
   const Customer = () => {
 
     return ( 
-    
-      
-        <div className="  flex  justify-center ml-20 mt-6">
-          <div className="inline-block ">
-          {customers.map((customer, index) => (
-            <div key={index} className=" p-5 whitespace-nowrap flex min-w-full sm:px-6 lg:px-8 h-auto space-x-6 text-left font-medium sm:pl-0 mb-3 shadow-lg rounded-3xl">
+
+      <div className="flex justify-center items-center " >
+            <div className="m-2">
+            {customers.map((customer, index) => (
+            
+            <div key={index} className=" gap-x-6 p-4 flex  h-auto  text-left  my-2 shadow-lg  rounded-3xl bg-white font-nunito">
               <div> 
-                    <div className="  mt-1 text-gray-500 ">Hat</div>
+                    <div className="  mt-1 text-gray-400 ">Hat</div>
                     <div className="mt-2 text-gray-900 ">{customer.hatNumber}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500 ">Repair Order</div>
+                    <div className="  mt-1 text-gray-400 ">Repair Order</div>
                     <div className="mt-2 text-gray-900 ">{customer.repairOrder}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500">Opened</div>
+                    <div className="  mt-1 text-gray-400">Opened</div>
                     <div className="mt-2 text-gray-900">{customer.openedAt}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500">Customer Name</div>
+                    <div className="  mt-1 text-gray-400">Customer Name</div>
                     <div className="mt-2 text-gray-900">{customer.customerName}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500">Vehicle</div>
-                    <div className="mt-2 text-gray-900">{customer.vehicle}</div>
+                    <div className="  mt-1 text-gray-400">Vehicle Model</div>
+                    <div className="  mt-2 text-gray-900">{customer.vehicle}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500">Contact</div>
+                    <div className="  mt-1 text-gray-400">Contact</div>
                     <div className="mt-2 text-gray-900">{customer.contact}</div>
               </div>
               <div> 
-                    <div className="  mt-1 text-gray-500">Priority</div>
-                    <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-500' : 'text-gray-900'}`}>
+                    <div className="  mt-1 text-gray-400">Priority</div>
+                    <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-400' : 'text-gray-900'}`}>
                           {customer.priority}
                         </div>
               </div>
@@ -84,8 +48,8 @@ const customers = [
               
             </div>
           ))}
-        </div>
-        </div>
+            </div>
+      </div>
     );
   };
 

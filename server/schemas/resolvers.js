@@ -38,18 +38,24 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addCustomer: async (parent, { hatNumber, repairOrder, customerName, vehicle, contact, priority, status, userId }) => {
-      const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority, status, user: userId });
-      await User.findByIdAndUpdate(userId, { $push: { customers: customer._id } });
-      return customer;
-    },
-    updateCustomerStatus: async (parent, { customerId, status }) => {
-      const validStatuses = ['Checked In', 'In Repair', 'Finished', 'Back Order'];
-      if (!validStatuses.includes(status)) {
-        throw new Error('Invalid status');
+    addCustomer: async (parent, { hatNumber, repairOrder, customerName, vehicle, contact, priority, status, userId }, context) => {
+      if (context.user) {
+        const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority, status, user: userId });
+        await User.findByIdAndUpdate(userId, { $push: { customers: customer._id } });
+        return customer;
       }
-      const customer = await Customer.findByIdAndUpdate(customerId, { status }, { new: true });
-      return customer;
+      throw new AuthenticationError('Not logged in');
+    },
+    updateCustomerStatus: async (parent, { customerId, status }, context) => {
+      if (context.user) {
+        const validStatuses = ['Checked In', 'In Repair', 'Finished', 'Back Order'];
+        if (!validStatuses.includes(status)) {
+          throw new Error('Invalid status');
+        }
+        const customer = await Customer.findByIdAndUpdate(customerId, { status }, { new: true });
+        return customer;
+      }
+      throw new AuthenticationError('Not logged in');
     },
     deleteUser: async (parent, { userId }, context) => {
       if (context.user && context.user.role === 'manager') {
