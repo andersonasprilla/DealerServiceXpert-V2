@@ -6,8 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        nunito: ['"Nunito Sans"', 'sans-serif']
+      },
+
       colors: {
-        'custom-bg': '#f4f9fd',
+        'light-blue': '#f4f9fd',
       }
     },
   },
