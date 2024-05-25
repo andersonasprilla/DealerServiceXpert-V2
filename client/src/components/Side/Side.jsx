@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 const Side = () => {
   return (
-    <div className='p-5 rounded-3xl bg-gray-900 h-screen'>
+    <div className='p-5 rounded-3xl bg-gray-900'>
       <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto logo"
