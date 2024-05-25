@@ -7,16 +7,14 @@ import Side from "../components/Side/Side";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex bg-light-blue p-5 gap-x-7 justify-center">
-        <div>
+      <div className="flex bg-light-blue p-5 gap-x-7 justify-center h-screen">
           <Side />
-        </div>
         <div>
           <Navbar />
           <TableInfo />
-          <div className=" h-screen overflow-y-auto">
+            <div className=" overflow-y-auto h-[1080px]">
             <Customer />
-          </div>
+            </div>
         </div>
       </div>
     </>

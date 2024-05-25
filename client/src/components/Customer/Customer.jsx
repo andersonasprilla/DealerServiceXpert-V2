@@ -7,7 +7,7 @@ import customers from "../../../../server/seeders/customerSeeds.json";
 
     return ( 
 
-      <div className="flex justify-center items-center " >
+      <div className="flex justify-center items-center" >
             <div className="m-2">
             {customers.map((customer, index) => (
             
