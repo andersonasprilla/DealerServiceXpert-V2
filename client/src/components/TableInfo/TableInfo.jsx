@@ -10,7 +10,7 @@ const TableInfo = () => {
   };
 
   return (
-    <div className="flex items-center place-content-center gap-x-56 pb-5">
+    <div className="flex items-center place-content-center gap-x-56 p-5">
       <div>
         <h1 className="text-3xl font-semibold leading-6 text-gray-900">Active Repair Orders (9)</h1>
       </div>
