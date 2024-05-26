@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
 
-const TableInfo = () => {
+const InfoBar = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddCustomerClick = () => {
@@ -22,4 +22,4 @@ const TableInfo = () => {
   );
 };
 
-export default TableInfo;
+export default InfoBar;

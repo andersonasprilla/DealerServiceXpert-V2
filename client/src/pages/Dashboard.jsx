@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar/Sidebar";
 import Navbar from "../components/Navbar/Navbar";
 import Customer from "../components/Customer/Customer";
-import TableInfo from "../components/TableInfo/TableInfo";
+import InfoBar from "../components/InfoBar/InfoBar";
 
 const Dashboard = () => {
   return (
@@ -10,7 +10,7 @@ const Dashboard = () => {
           <Sidebar />
         <div>
           <Navbar />
-          <TableInfo />
+          <InfoBar />
             <div className=" overflow-y-auto h-[800px] ">
             <Customer />
             </div>

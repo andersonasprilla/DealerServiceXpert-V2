@@ -1,10 +1,12 @@
+import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
-
 import customers from "../../../../server/seeders/customerSeeds.json";
 import formatTime from "../helper/formatTime";
 
   
   const Customer = () => {
+
+      const [customerCount, setCustomerCount] = useState(customers.length)
 
     return ( 
 
@@ -39,7 +41,7 @@ import formatTime from "../helper/formatTime";
               </div>
               <div> 
                     <div className="  mt-1 text-gray-400">Priority</div>
-                    <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-400' : 'text-gray-900'}`}>
+                    <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-700' : 'text-gray-900'}`}>
                           {customer.priority}
                         </div>
               </div>
