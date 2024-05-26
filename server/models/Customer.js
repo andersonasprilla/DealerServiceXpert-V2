@@ -25,6 +25,7 @@ const customerSchema = new Schema({
     vehicle: {
         required: true,
         type: String,
+        set: capitalizeName
     },
     contact: {
         required: true,
