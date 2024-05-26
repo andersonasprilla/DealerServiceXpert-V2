@@ -11,15 +11,15 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     users: async (parent, args, context) => {
-      if (context.user && context.user.role === 'manager') {
+      if (context.user && context.user.role === 'Manager') {
         return User.find().populate('users');
       }
       throw new AuthenticationError('Not authorized');
-    }
+    },
   },
   Mutation: {
     addUser: async (parent, { userName, role, email, password }, context) => {
-      if (context.user && context.user.role === 'manager') {
+      if (context.user && context.user.role === 'Manager') {
         const user = await User.create({ userName, role, email, password });
         const token = signToken(user);
         return { token, user };
@@ -58,7 +58,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     deleteUser: async (parent, { userId }, context) => {
-      if (context.user && context.user.role === 'manager') {
+      if (context.user && context.user.role === 'Manager') {
         const user = await User.findById(userId);
         if (!user) {
           throw new AuthenticationError('User not found');
@@ -67,11 +67,11 @@ const resolvers = {
           await Customer.findByIdAndUpdate(customerId, { user: null });
         }
         await User.findByIdAndDelete(userId);
-        return `User with id ${userId} deleted`;
+        return { message: `User with id ${userId} deleted` };
       }
       throw new AuthenticationError('Not authorized');
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;

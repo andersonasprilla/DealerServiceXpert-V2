@@ -37,7 +37,10 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addCustomer(hatNumber: Int!, repairOrder: Int!, customerName: String!, vehicle: String!, contact: String!, priority: String!, status: String!, userId: ID!): Customer
   updateCustomerStatus(customerId: ID!, status: String!): Customer
-  deleteUser(userId: ID!): User
+  deleteUser(userId: ID!): DeleteUserResponse
+}
+type DeleteUserResponse {
+  message: String!
 }
 `;
 
