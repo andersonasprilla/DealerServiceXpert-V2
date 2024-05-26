@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import getStatusClasses from '../helper/getStatusClasses';
+import getStatusColors from '../helper/getStatusColors';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -20,7 +20,7 @@ const Dropdown = () => {
         <div>
           <Menu.Button className={classNames(
             "inline-flex items-center justify-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium shadow-sm ring-1 ring-inset focus:outline-none focus:ring-2 focus:ring-offset-2 w-28",
-            getStatusClasses(status)
+            getStatusColors(status)
           )}>
             <span className="truncate">{status}</span>
             <ChevronDownIcon className="-mr-1 h-5 w-5 " aria-hidden="true" />

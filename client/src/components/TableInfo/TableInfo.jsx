@@ -15,7 +15,7 @@ const TableInfo = () => {
         <h1 className="text-3xl font-semibold leading-6 text-gray-900">Active Repair Orders (9)</h1>
       </div>
       <div>
-        <Button onClick={handleAddUserClick}> + Add User</Button>
+        <Button onClick={handleAddUserClick}> + Add Customer</Button>
       </div>
       {showModal && <Modal />}
     </div>

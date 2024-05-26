@@ -6,7 +6,8 @@
         "vehicle": "Accord 2022",
         "contact": "(305)-456-7890",
         "priority": "Waiter",
-        "status": "Checked In"
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6202",
@@ -15,7 +16,8 @@
         "vehicle": "Civic 2021",
         "contact": "(305)-123-4567",
         "priority": "Drop Off",
-        "status": "In Repair" 
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6203",
@@ -24,7 +26,8 @@
         "vehicle": "CR-V 2020",
         "contact": "(305)-234-5678",
         "priority": "Drop Off",
-        "status": "Finished"
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
 
     },
     {
@@ -34,7 +37,8 @@
         "vehicle": "Pilot 2019",
         "contact": "(305)-345-6789",
         "priority": "Drop Off",
-        "status": "In Repair"
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6205",
@@ -43,7 +47,8 @@
         "vehicle": "Odyssey 2018",
         "contact": "(305)-456-7891",
         "priority": "Drop Off",
-        "status": "Checked In"
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6206",
@@ -52,7 +57,8 @@
         "vehicle": "HR-V 2022",
         "contact": "(305)-567-8901",
         "priority": "Drop Off",
-        "status": "In Repair"
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6207",
@@ -61,7 +67,8 @@
         "vehicle": "Fit 2021",
         "contact": "(305)-678-9012",
         "priority": "Waiter",
-        "status": "Checked In"
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6208",
@@ -70,7 +77,8 @@
         "vehicle": "Insight 2020",
         "contact": "(305)-789-0123",
         "priority": "Drop Off",
-        "status": "In Repair"
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
     },
     {
         "hatNumber": "6209",
@@ -79,7 +87,190 @@
         "vehicle": "Ridgeline 2019",
         "contact": "(305)-890-1234",
         "priority": "Waiter",
-        "status": "Finished"
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6201",
+        "repairOrder": "497255",
+        "customerName": "John Doe",
+        "vehicle": "Accord 2022",
+        "contact": "(305)-456-7890",
+        "priority": "Waiter",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6202",
+        "repairOrder": "497256",
+        "customerName": "Jane Smith",
+        "vehicle": "Civic 2021",
+        "contact": "(305)-123-4567",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6203",
+        "repairOrder": "497257",
+        "customerName": "Michael Johnson",
+        "vehicle": "CR-V 2020",
+        "contact": "(305)-234-5678",
+        "priority": "Drop Off",
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
+
+    },
+    {
+        "hatNumber": "6204",
+        "repairOrder": "497258",
+        "customerName": "Emily Davis",
+        "vehicle": "Pilot 2019",
+        "contact": "(305)-345-6789",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6205",
+        "repairOrder": "497259",
+        "customerName": "William Brown",
+        "vehicle": "Odyssey 2018",
+        "contact": "(305)-456-7891",
+        "priority": "Drop Off",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6206",
+        "repairOrder": "497260",
+        "customerName": "Jessica Garcia",
+        "vehicle": "HR-V 2022",
+        "contact": "(305)-567-8901",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6207",
+        "repairOrder": "497261",
+        "customerName": "David Martinez",
+        "vehicle": "Fit 2021",
+        "contact": "(305)-678-9012",
+        "priority": "Waiter",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6208",
+        "repairOrder": "497262",
+        "customerName": "Sarah Wilson",
+        "vehicle": "Insight 2020",
+        "contact": "(305)-789-0123",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6209",
+        "repairOrder": "497263",
+        "customerName": "Daniel Taylor",
+        "vehicle": "Ridgeline 2019",
+        "contact": "(305)-890-1234",
+        "priority": "Waiter",
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6201",
+        "repairOrder": "497255",
+        "customerName": "John Doe",
+        "vehicle": "Accord 2022",
+        "contact": "(305)-456-7890",
+        "priority": "Waiter",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6202",
+        "repairOrder": "497256",
+        "customerName": "Jane Smith",
+        "vehicle": "Civic 2021",
+        "contact": "(305)-123-4567",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6203",
+        "repairOrder": "497257",
+        "customerName": "Michael Johnson",
+        "vehicle": "CR-V 2020",
+        "contact": "(305)-234-5678",
+        "priority": "Drop Off",
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
+
+    },
+    {
+        "hatNumber": "6204",
+        "repairOrder": "497258",
+        "customerName": "Emily Davis",
+        "vehicle": "Pilot 2019",
+        "contact": "(305)-345-6789",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6205",
+        "repairOrder": "497259",
+        "customerName": "William Brown",
+        "vehicle": "Odyssey 2018",
+        "contact": "(305)-456-7891",
+        "priority": "Drop Off",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6206",
+        "repairOrder": "497260",
+        "customerName": "Jessica Garcia",
+        "vehicle": "HR-V 2022",
+        "contact": "(305)-567-8901",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6207",
+        "repairOrder": "497261",
+        "customerName": "David Martinez",
+        "vehicle": "Fit 2021",
+        "contact": "(305)-678-9012",
+        "priority": "Waiter",
+        "status": "Checked In",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6208",
+        "repairOrder": "497262",
+        "customerName": "Sarah Wilson",
+        "vehicle": "Insight 2020",
+        "contact": "(305)-789-0123",
+        "priority": "Drop Off",
+        "status": "In Repair",
+        "openedAt": "2024-05-22T10:00:00Z"
+    },
+    {
+        "hatNumber": "6209",
+        "repairOrder": "497263",
+        "customerName": "Daniel Taylor",
+        "vehicle": "Ridgeline 2019",
+        "contact": "(305)-890-1234",
+        "priority": "Waiter",
+        "status": "Finished",
+        "openedAt": "2024-05-22T10:00:00Z"
     }
 
 ]

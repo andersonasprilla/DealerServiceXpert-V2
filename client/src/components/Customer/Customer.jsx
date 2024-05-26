@@ -1,6 +1,7 @@
-import { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
+
 import customers from "../../../../server/seeders/customerSeeds.json";
+import formatTime from "../helper/formatTime";
 
   
   const Customer = () => {
@@ -14,7 +15,7 @@ import customers from "../../../../server/seeders/customerSeeds.json";
             <div key={index} className=" gap-x-6 p-4 flex  h-auto  text-left  my-2 shadow-lg  rounded-3xl bg-white font-nunito">
               <div> 
                     <div className="  mt-1 text-gray-400 ">Hat</div>
-                    <div className="mt-2 text-gray-900 ">{customer.hatNumber}</div>
+                    <div className="mt-2 text-gray-900 ">{`T${customer.hatNumber}`}</div>
               </div>
               <div> 
                     <div className="  mt-1 text-gray-400 ">Repair Order</div>
@@ -22,7 +23,7 @@ import customers from "../../../../server/seeders/customerSeeds.json";
               </div>
               <div> 
                     <div className="  mt-1 text-gray-400">Opened</div>
-                    <div className="mt-2 text-gray-900">{customer.openedAt}</div>
+                    <div className="mt-2 text-gray-900">{formatTime(customer.openedAt)}</div>
               </div>
               <div> 
                     <div className="  mt-1 text-gray-400">Customer Name</div>
