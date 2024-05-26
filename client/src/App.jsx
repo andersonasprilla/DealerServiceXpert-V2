@@ -1,11 +1,12 @@
-import Dashboard from "./pages/Dashboard"
+
 import { Provider } from 'react-redux'
 import store from  './store'
-function App() {
+import { Outlet } from 'react-router-dom';
 
+function App() {
   return (
     <Provider store={store}>
-      < Dashboard />
+      <Outlet />
     </Provider>
   )
 }
