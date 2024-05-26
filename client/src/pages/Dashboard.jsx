@@ -11,7 +11,7 @@ const Dashboard = () => {
         <div>
           <Navbar />
           <TableInfo />
-            <div className=" overflow-y-auto h-[800px] lg:h-[1080]">
+            <div className=" overflow-y-auto h-[800px] ">
             <Customer />
             </div>
         </div>

@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 const Sidebar = () => {
   return (
-    <div className="p-5 rounded-3xl bg-gray-800 flex flex-col h-full">
+    <div className="p-5 rounded-3xl bg-gray-900 flex flex-col h-full">
       <div className="flex h-16 shrink-0 items-center">
         <img
           className="h-8 w-auto logo"
@@ -42,7 +42,7 @@ const Sidebar = () => {
                   >
                     <item.icon
                       className={classNames(
-                        item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                        item.current ? 'text-white' : 'text-white-200 group-hover:text-white',
                         'h-6 w-6 shrink-0'
                       )}
                       aria-hidden="true"
@@ -59,7 +59,7 @@ const Sidebar = () => {
               className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
             >
               <ArrowLeftOnRectangleIcon
-                className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
+                className="h-6 w-6 shrink-0 text-white-200 group-hover:text-white"
                 aria-hidden="true"
               />
               Log Out
