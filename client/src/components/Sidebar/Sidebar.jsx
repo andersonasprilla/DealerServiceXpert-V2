@@ -3,12 +3,15 @@ import {
   ShoppingCartIcon,
   HomeIcon,
   CheckCircleIcon,
+  LifebuoyIcon
 } from '@heroicons/react/24/outline';
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Finished', href: '#', icon: CheckCircleIcon, current: false },
   { name: 'Special Order Parts', href: '#', icon: ShoppingCartIcon, current: false },
+  { name: 'Loaners', href: '#', icon: LifebuoyIcon, current: false },
 ];
 
 function classNames(...classes) {
