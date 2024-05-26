@@ -1,32 +1,13 @@
 import { useState } from "react";
-import { Input } from "@material-tailwind/react";
+import { Checkbox } from "@material-tailwind/react";
 
-const Priority = () => {
-    const [value, setValue] = useState('');
-    const [error, setError] = useState(false);
-
-    const handleInput = (e) => {
-        const inputValue = e.target.value;
-        setValue(inputValue);
-        setError(inputValue === '');
-    };
-
-    const handleBlur = () => {
-        if (value === '') {
-            setError(true);
-        }
-    };
-
+const Priority = ({ value, onChange }) => {
     return (
         <div>
-            <Input
-                type="text"
-                className="focus:ring-transparent"
-                label="Priority"
-                value={value}
-                error={error}
-                onInput={handleInput}
-                onBlur={handleBlur}
+            <Checkbox 
+                label="Waiter" 
+                checked={value}
+                onChange={e => onChange({ target: { value: e.target.checked } })}
             />
         </div>
     );
