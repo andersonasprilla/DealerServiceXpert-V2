@@ -1,14 +1,5 @@
 [
-    {
-        "hatNumber": "6201",
-        "repairOrder": "497255",
-        "customerName": "John Doe",
-        "vehicle": "Accord 2022",
-        "contact": "(305)-456-7890",
-        "priority": "Waiter",
-        "status": "Checked In",
-        "openedAt": "2024-05-22T10:00:00Z"
-    },
+    
     {
         "hatNumber": "6202",
         "repairOrder": "497256",

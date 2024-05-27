@@ -12,7 +12,7 @@ const resolvers = {
     },
     users: async (parent, args, context) => {
       if (context.user && context.user.role === 'Manager') {
-        return User.find().populate('users');
+        return User.find({ manager: context.user._id }).populate('users');
       }
       throw new AuthenticationError('Not authorized');
     },
