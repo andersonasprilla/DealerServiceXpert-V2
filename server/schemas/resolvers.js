@@ -4,7 +4,7 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    customers: async (parent, args, context) => {
       if (context.user) {
         return User.findById(context.user._id).populate('customers');
       }
@@ -12,7 +12,7 @@ const resolvers = {
     },
     users: async (parent, args, context) => {
       if (context.user && context.user.role === 'Manager') {
-        return User.find().populate('users');
+        return User.find({ manager: context.user._id }).populate('users');
       }
       throw new AuthenticationError('Not authorized');
     },

@@ -28,7 +28,7 @@ type Auth {
 }
 
 type Query {
-  me: User
+  customers: User
   users: [User!]!
 }
 
@@ -39,6 +39,7 @@ type Mutation {
   updateCustomerStatus(customerId: ID!, status: String!): Customer
   deleteUser(userId: ID!): DeleteUserResponse
 }
+
 type DeleteUserResponse {
   message: String!
 }
