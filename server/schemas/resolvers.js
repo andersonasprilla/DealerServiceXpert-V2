@@ -6,7 +6,8 @@ const resolvers = {
   Query: {
     customers: async (parent, args, context) => {
       if (context.user) {
-        return User.findById(context.user._id).populate('customers');
+        const user = await User.findById(context.user._id).populate('customers');
+        return user.customers;
       }
       throw new AuthenticationError('Not logged in');
     },
