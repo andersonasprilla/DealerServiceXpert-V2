@@ -4,7 +4,7 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    customers: async (parent, args, context) => {
       if (context.user) {
         return User.findById(context.user._id).populate('customers');
       }
