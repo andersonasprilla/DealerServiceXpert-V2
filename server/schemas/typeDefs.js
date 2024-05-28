@@ -28,7 +28,7 @@ type Auth {
 }
 
 type Query {
-  customers: User
+  customers: [Customer!]!
   users: [User!]!
 }
 
