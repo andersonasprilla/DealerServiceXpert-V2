@@ -3,9 +3,6 @@ import {  Menu, Transition } from '@headlessui/react'
 import { BellIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import classNames from 'classnames'
-
-import { useQuery } from '@apollo/client'
-import { QUERY_USER } from '../../utils/queries'
 import  AuthService  from '../../utils/auth'
 
 const userNavigation = [
@@ -14,10 +11,6 @@ const userNavigation = [
   ]
 
 const Navbar = () => {
-
-  const { loading, data } = useQuery(QUERY_USER)
-  const user = data?.users 
-  console.log(user)
 
   return (
     <>

@@ -1,3 +1,4 @@
+
 import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from "../Dropdown/Dropdown";
 import formatTime from "../helper/formatTime";
@@ -15,7 +16,6 @@ const Customer = () => {
   const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
   const customers = (AuthService.getProfile().data.role === "Manager" ? data?.users : data?.customers) || [];
 
-  console.log(AuthService.getProfile().data);
 
   useEffect(() => {
     dispatch(setCustomerCount(customers.length));

@@ -1,19 +1,12 @@
-import moment from 'moment';
+import { differenceInMinutes, differenceInDays } from 'date-fns';
 
-const formatTime = (dateNow) => {
-    const now = moment();
-    const givenDate = moment(dateNow);
-    const duration = moment.duration(now.diff(givenDate));
-
-    const days = duration.days();
-    const hours = duration.hours();
-    const minutes = duration.minutes();
-
-    if (duration.asHours() > 8) {
-        return `${days}d ${hours}h`;
-    } else {
-        return `${days}d ${hours}h ${minutes}m`;
-    }
-}
+const formatTime = (timestamp) => {
+  const date = new Date(parseInt(timestamp, 10));
+  const now = new Date();
+  const days = differenceInDays(now, date);
+  const minutes = differenceInMinutes(now, date) % 60;
+  
+  return `${days}d ${minutes}m`;
+};
 
 export default formatTime;
