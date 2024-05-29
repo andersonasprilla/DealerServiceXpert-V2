@@ -39,10 +39,10 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addCustomer: async (parent, { hatNumber, repairOrder, customerName, vehicle, contact, priority, status, userId }, context) => {
+    addCustomer: async (parent, { hatNumber, repairOrder, customerName, vehicle, contact, priority }, context) => {
       if (context.user) {
-        const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority, status, user: userId });
-        await User.findByIdAndUpdate(userId, { $push: { customers: customer._id } });
+        const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority });
+        await User.findByIdAndUpdate(context.user._id, { $push: { customers: customer._id } });
         return customer;
       }
       throw new AuthenticationError('Not logged in');
