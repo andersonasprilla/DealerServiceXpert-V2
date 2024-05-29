@@ -1,14 +1,21 @@
-// Customer.jsx
 import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from "../Dropdown/Dropdown";
-import customers from "../../../../server/seeders/customerSeeds.json";
 import formatTime from "../helper/formatTime";
 import { useEffect } from 'react';
 import { setCustomerCount } from '../../actions/customerActions';
+import { useQuery } from '@apollo/client';
+import { QUERY_CUSTOMER, QUERY_USER } from '../../utils/queries';
+
+import AuthService from '../../utils/auth';
 
 const Customer = () => {
   const dispatch = useDispatch();
   const customerCount = useSelector((state) => state.customer.customerCount);
+
+  const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
+  const customers = (AuthService.getProfile().data.role === "Manager" ? data?.users : data?.customers) || [];
+
+  console.log(AuthService.getProfile().data);
 
   useEffect(() => {
     dispatch(setCustomerCount(customers.length));
