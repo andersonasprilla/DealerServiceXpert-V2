@@ -1,10 +1,12 @@
 import { Fragment,  } from 'react'
 import {  Menu, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  BellIcon,
-} from '@heroicons/react/24/outline'
+import { BellIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import classNames from 'classnames'
+
+import { useQuery } from '@apollo/client'
+import { QUERY_USER } from '../../utils/queries'
+import  AuthService  from '../../utils/auth'
 
 const userNavigation = [
     { name: 'Your profile', href: '#' },
@@ -12,6 +14,11 @@ const userNavigation = [
   ]
 
 const Navbar = () => {
+
+  const { loading, data } = useQuery(QUERY_USER)
+  const user = data?.users 
+  console.log(user)
+
   return (
     <>
           <div className=" justify-center items-center">
@@ -56,7 +63,7 @@ const Navbar = () => {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        Service Advisor
+                        { AuthService.getProfile().data.userName}
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
