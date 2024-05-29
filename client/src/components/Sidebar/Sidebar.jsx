@@ -5,7 +5,8 @@ import {
   CheckCircleIcon,
   LifebuoyIcon
 } from '@heroicons/react/24/outline';
-
+import AuthService from '../../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -19,6 +20,12 @@ function classNames(...classes) {
 }
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate('/');
+  };
   return (
     <div className="p-5 rounded-3xl bg-gray-900 flex flex-col h-full">
       <div className="flex h-16 shrink-0 items-center">
@@ -26,7 +33,7 @@ const Sidebar = () => {
           className="h-8 w-auto logo"
           src="https://www.svgrepo.com/show/210990/car.svg"
         />
-        <span className="ml-2 text-white text-3xl ">DSxpert</span>
+        <span className="ml-2 text-white text-3xl">DSxpert</span>
       </div>
       <nav className="flex flex-1 flex-col pt-6">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -57,8 +64,8 @@ const Sidebar = () => {
             </ul>
           </li>
           <li className="mt-auto">
-            <a
-              href="#"
+            <button
+              onClick={handleLogout}
               className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
             >
               <ArrowLeftOnRectangleIcon
@@ -66,7 +73,7 @@ const Sidebar = () => {
                 aria-hidden="true"
               />
               Log Out
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
