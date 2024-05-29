@@ -49,7 +49,7 @@ const resolvers = {
     },
     updateCustomerStatus: async (parent, { customerId, status }, context) => {
       if (context.user) {
-        const validStatuses = ['Checked In', 'In Repair', 'Finished', 'Back Order'];
+        const validStatuses = ['In Repair', 'Finished', 'Back Order'];
         if (!validStatuses.includes(status)) {
           throw new Error('Invalid status');
         }

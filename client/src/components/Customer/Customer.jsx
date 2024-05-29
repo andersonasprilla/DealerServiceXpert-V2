@@ -1,22 +1,25 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import Dropdown from "../Dropdown/Dropdown";
 import formatTime from "../helper/formatTime";
 import { setCustomerCount } from '../../actions/customerActions';
 import { QUERY_CUSTOMER, QUERY_USER } from '../../utils/queries';
+import { UPDATE_CUSTOMER_STATUS } from '../../utils/mutations';
 import AuthService from '../../utils/auth';
 
 const Customer = () => {
   const dispatch = useDispatch();
   const customerCount = useSelector((state) => state.customer.customerCount);
   const [customers, setCustomers] = useState([]);
+  const [updateCustomerStatus] = useMutation(UPDATE_CUSTOMER_STATUS);
 
   useEffect(() => {
     dispatch(setCustomerCount(customers.length));
   }, [dispatch, customers]);
 
   const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
+
 
   useEffect(() => {
     if (AuthService.getProfile().data.role === "Manager" && data?.users) {
@@ -26,11 +29,24 @@ const Customer = () => {
     }
   }, [data]);
 
-  const handleStatusChange = (index, newStatus) => {
-    const updatedCustomers = customers.map((customer, i) => 
-      i === index ? { ...customer, status: newStatus } : customer
-    );
-    setCustomers(updatedCustomers);
+  const handleStatusChange = async (index, newStatus) => {
+    try {
+      const { data } = await updateCustomerStatus({
+        variables: {
+          customerId: customers[index]._id,
+          status: newStatus,
+        },
+      });
+
+      if (data.updateCustomerStatus) {
+        const updatedCustomers = customers.map((customer, i) =>
+          i === index ? { ...customer, status: newStatus } : customer
+        );
+        setCustomers(updatedCustomers);
+      }
+    } catch (error) {
+      console.error("Error updating customer status:", error);
+    }
   };
 
   return (
@@ -74,7 +90,7 @@ const Customer = () => {
             <div>
               <Dropdown 
                 status={customer.status} 
-                onStatusChange={(newStatus) => handleStatusChange(index, newStatus)} 
+                onStatusChange={(newStatus) => handleStatusChange(index, newStatus,)} 
               />
             </div>
           </div>
