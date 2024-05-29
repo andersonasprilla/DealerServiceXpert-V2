@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import getStatusColors from '../helper/getStatusColors';
@@ -7,13 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dropdown = () => {
-  const [status, setStatus] = useState('Checked In');
-
-  const handleStatusChange = (newStatus) => {
-    setStatus(newStatus);
-  }
-
+const Dropdown = ({ status, onStatusChange }) => {
   return (
     <div className="flex items-center justify-center h-full relative ml-3">
       <Menu as="div" className="relative inline-block text-left">
@@ -45,7 +39,7 @@ const Dropdown = () => {
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}
-                    onClick={() => handleStatusChange('In Repair')}
+                    onClick={() => onStatusChange('In Repair')}
                   >
                     In Repair
                   </a>
@@ -59,7 +53,7 @@ const Dropdown = () => {
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}
-                    onClick={() => handleStatusChange('Finished')}
+                    onClick={() => onStatusChange('Finished')}
                   >
                     Finished
                   </a>
@@ -73,7 +67,7 @@ const Dropdown = () => {
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block px-4 py-2 text-sm'
                     )}
-                    onClick={() => handleStatusChange('Back Order')}
+                    onClick={() => onStatusChange('Back Order')}
                   >
                     Back Order
                   </a>

@@ -1,25 +1,37 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 import Dropdown from "../Dropdown/Dropdown";
 import formatTime from "../helper/formatTime";
-import { useEffect } from 'react';
 import { setCustomerCount } from '../../actions/customerActions';
-import { useQuery } from '@apollo/client';
 import { QUERY_CUSTOMER, QUERY_USER } from '../../utils/queries';
-
 import AuthService from '../../utils/auth';
 
 const Customer = () => {
   const dispatch = useDispatch();
   const customerCount = useSelector((state) => state.customer.customerCount);
-
-  const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
-  const customers = (AuthService.getProfile().data.role === "Manager" ? data?.users : data?.customers) || [];
-
-  console.log(AuthService.getProfile().data);
+  const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
     dispatch(setCustomerCount(customers.length));
-  }, [dispatch]);
+  }, [dispatch, customers]);
+
+  const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
+
+  useEffect(() => {
+    if (AuthService.getProfile().data.role === "Manager" && data?.users) {
+      setCustomers(data.users);
+    } else if (data?.customers) {
+      setCustomers(data.customers);
+    }
+  }, [data]);
+
+  const handleStatusChange = (index, newStatus) => {
+    const updatedCustomers = customers.map((customer, i) => 
+      i === index ? { ...customer, status: newStatus } : customer
+    );
+    setCustomers(updatedCustomers);
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -60,7 +72,10 @@ const Customer = () => {
               </div>
             </div>
             <div>
-              <Dropdown />
+              <Dropdown 
+                status={customer.status} 
+                onStatusChange={(newStatus) => handleStatusChange(index, newStatus)} 
+              />
             </div>
           </div>
         ))}
