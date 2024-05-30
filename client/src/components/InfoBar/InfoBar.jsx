@@ -19,7 +19,7 @@ const InfoBar = () => {
       <div>
         <Button onClick={handleAddCustomerClick}> + Add Customer</Button>
       </div>
-      {showModal && <Modal />}
+      {showModal && <Modal showModal ={showModal} setShowModal = {setShowModal}/>}
     </div>
   );
 };

@@ -9,8 +9,9 @@ import Priority from './Priority'
 
 import { useMutation } from '@apollo/client'
 import { ADD_CUSTOMER } from '../../utils/mutations'
+import { QUERY_CUSTOMER } from '../../utils/queries'
 
-const Modal = () => {
+const Modal = ({ showModal, setShowModal }) => {
   const [open, setOpen] = useState(true)
 
   const [formData, setFormData] = useState({
@@ -22,7 +23,9 @@ const Modal = () => {
     priority: 'Drop Off',  // Default value
   });
 
-  const [addCustomer, { loading, error}] = useMutation(ADD_CUSTOMER);
+  const [addCustomer, { loading, error}] = useMutation(ADD_CUSTOMER, {
+    refetchQueries: [QUERY_CUSTOMER, "Customers"]
+  });
 
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
@@ -51,6 +54,7 @@ const Modal = () => {
           priority,
         },
       });
+      setShowModal(false);
       setOpen(false);
     } catch (error) {
       console.error('Error adding customer:', error);
