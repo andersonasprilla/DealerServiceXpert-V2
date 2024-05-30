@@ -10,9 +10,40 @@ import Priority from './Priority'
 const Modal = () => {
   const [open, setOpen] = useState(true)
 
+  const [formData, setFormData] = useState({
+    hat: '',
+    repairOrder: '',
+    customerName: '',
+    vehicle: '',
+    contact: '',
+    priority: 'Drop Off',  // Default value
+  });
+
+  const handleInputChange = (name, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { hat, repairOrder, customerName, vehicle, contact } = formData;
+    const isEmpty = [hat, repairOrder, customerName, vehicle, contact].some((value) => value === '');
+
+    if (isEmpty) {
+      alert('Please fill out all fields.');
+      return;
+    }
+
+    console.log('Form submitted:', formData);
+    setOpen(false);
+  };
+
+
   return (
     <Transition show={open}>
-      <Dialog className="relative z-10" onClose={setOpen}>
+      <Dialog className="relative z-10" onClose={() => setOpen(false)}>
         <TransitionChild
           enter="ease-out duration-300"
           enterFrom="opacity-0"
@@ -36,15 +67,16 @@ const Modal = () => {
             >
               <DialogPanel className=" justify-items-center min-w-max relative transform overflow-hidden rounded-3xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
 
-                <form className='flex gap-x-5'>
-                  < Hat />
-                  < RepairOrder />
-                  < CustomerName />
-                  < Vehicle />
-                  < Contact />
-                  < Priority />  
+                <form className='flex gap-x-5' onSubmit={handleSubmit}>
+                  <Hat value={formData.hat} onChange={handleInputChange} />
+                  <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
+                  <CustomerName value={formData.customerName} onChange={handleInputChange} />
+                  <Vehicle value={formData.vehicle} onChange={handleInputChange} />
+                  <Contact value={formData.contact} onChange={handleInputChange} />
+                  <Priority value={formData.priority} onChange={handleInputChange} />
+                  <button type="submit" style={{ display: 'none' }}></button>
                 </form>
-                     
+
               </DialogPanel>
             </TransitionChild>
           </div>

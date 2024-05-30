@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
 
-const Hat = () => {
-    const [value, setValue] = useState('');
-    const [error, setError] = useState(false);
+const Hat = ({ value, onChange }) => {
+    const [inputValue, setInputValue] = useState(value);
+  const [error, setError] = useState(false);
 
-    const handleInput = (e) => {
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
+      const handleInput = (e) => {
         const inputValue = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
-        setValue(inputValue);
+        setInputValue(inputValue);
         setError(inputValue === '');
-    };
+        onChange('hat', inputValue);
+      };
 
-    const handleBlur = () => {
-        if (value === '') {
-            setError(true);
+      const handleBlur = () => {
+        if (inputValue === '') {
+          setError(true);
         }
-    };
+      };
 
     return (     
         <div className="w-full max-w-xs">
@@ -25,7 +30,7 @@ const Hat = () => {
                 type="text"
                 pattern="\d{4}"
                 maxLength="4"
-                value={value}
+                value={inputValue}
                 error={error}
                 onInput={handleInput}
                 onBlur={handleBlur}

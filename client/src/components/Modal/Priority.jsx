@@ -1,16 +1,23 @@
-import { useState } from "react";
+import React from 'react';
 import { Checkbox } from "@material-tailwind/react";
 
 const Priority = ({ value, onChange }) => {
-    return (
-        <div>
-            <Checkbox 
-                label="Waiter" 
-                checked={value}
-                onChange={e => onChange({ target: { value: e.target.checked } })}
-            />
-        </div>
-    );
+  const isChecked = value === 'Waiter';
+
+  const handleChange = (e) => {
+    const newValue = e.target.checked ? 'Waiter' : 'Drop Off';
+    onChange('priority', newValue);
+  };
+
+  return (
+    <div>
+      <Checkbox 
+        label="Waiter" 
+        checked={isChecked}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 export default Priority;
