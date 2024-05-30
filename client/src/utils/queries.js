@@ -17,6 +17,7 @@ export const QUERY_USER =gql`
 query Users {
   users {
     userName
+    role
     email
   }
 }
