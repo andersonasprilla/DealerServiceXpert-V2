@@ -13,7 +13,7 @@ const Hat = ({ value, onChange }) => {
         const inputValue = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
         setInputValue(inputValue);
         setError(inputValue === '');
-        onChange('hat', inputValue);
+        onChange('hatNumber', inputValue);
       };
 
       const handleBlur = () => {
@@ -34,6 +34,7 @@ const Hat = ({ value, onChange }) => {
                 error={error}
                 onInput={handleInput}
                 onBlur={handleBlur}
+                autoComplete="off"
             />
         </div>
     )

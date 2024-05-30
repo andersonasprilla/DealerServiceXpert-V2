@@ -34,6 +34,7 @@ const CustomerName = ({ value, onChange }) => {
         error={error}
         onInput={handleInput}
         onBlur={handleBlur}
+        autoComplete="name"
       />
     </div>
   );

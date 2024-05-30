@@ -5,12 +5,12 @@ const capitalizeName = require('../utils/capitalizeName');
 const customerSchema = new Schema({
     hatNumber: {
         required: true,
-        type: Number,
+        type: String,
         match: [/^\d{4}$/, 'Must be a 4-digit number']
     },
     repairOrder: {
         required: true,
-        type: Number,
+        type: String,
         match: [/^\d{6}$/, 'Must be a 6-digit number']
     },
     openedAt: {
@@ -25,7 +25,7 @@ const customerSchema = new Schema({
     vehicle: {
         required: true,
         type: String,
-        set: capitalizeName
+        // set: capitalizeName
     },
     contact: {
         required: true,

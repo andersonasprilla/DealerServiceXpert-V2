@@ -38,6 +38,7 @@ const Contact = ({ value, onChange }) => {
         className="focus:ring-transparent"
         label="Contact"
         error={error}
+        autoComplete= "tel"
       />
     </div>
   );

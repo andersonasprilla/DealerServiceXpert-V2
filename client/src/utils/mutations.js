@@ -15,13 +15,19 @@ mutation AddUser($userName: String!, $role: String!, $email: String!, $password:
     }
   }
 `;
-export const ADD_CUSTOMER = gql `
-mutation AddCustomer($hatNumber: Int!, $repairOrder: Int!, $customerName: String!, $vehicle: String!, $contact: String!, $priority: String!, $status: String!, $userId: ID!) {
-    addCustomer(hatNumber: $hatNumber, repairOrder: $repairOrder, customerName: $customerName, vehicle: $vehicle, contact: $contact, priority: $priority, status: $status, userId: $userId) {
+export const ADD_CUSTOMER = gql`
+  mutation AddCustomer($hatNumber: String!, $repairOrder: String!, $customerName: String!, $vehicle: String!, $contact: String!, $priority: String!) {
+    addCustomer(hatNumber: $hatNumber, repairOrder: $repairOrder, customerName: $customerName, vehicle: $vehicle, contact: $contact, priority: $priority) {
+      hatNumber
+      repairOrder
       customerName
+      vehicle
+      contact
+      priority
     }
   }
-  `;
+`;
+
 
 export const UPDATE_CUSTOMER_STATUS = gql`
 mutation UpdateCustomerStatus($customerId: ID!, $status: String!) {
