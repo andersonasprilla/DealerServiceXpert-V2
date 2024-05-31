@@ -1,33 +1,20 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Dropdown from "../Dropdown/Dropdown";
 import formatTime from "../helper/formatTime";
 import { setCustomerCount } from '../../actions/customerActions';
-import { QUERY_CUSTOMER, QUERY_USER } from '../../utils/queries';
 import { UPDATE_CUSTOMER_STATUS } from '../../utils/mutations';
-import AuthService from '../../utils/auth';
 
-const Customer = () => {
+const Customer = ({ customers }) => {
   const dispatch = useDispatch();
-  const customerCount = useSelector((state) => state.customer.customerCount);
-  const [customers, setCustomers] = useState([]);
-  const [updateCustomerStatus] = useMutation(UPDATE_CUSTOMER_STATUS);
+  const [updateCustomerStatus] = useMutation(UPDATE_CUSTOMER_STATUS, {
+    refetchQueries: ["QUERY_CUSTOMER", "Customers"]
+  });
 
   useEffect(() => {
     dispatch(setCustomerCount(customers.length));
   }, [dispatch, customers]);
-
-  const { loading, data } = AuthService.getProfile().data.role === "Manager" ? useQuery(QUERY_USER) : useQuery(QUERY_CUSTOMER);
-
-
-  useEffect(() => {
-    if (AuthService.getProfile().data.role === "Manager" && data?.users) {
-      setCustomers(data.users);
-    } else if (data?.customers) {
-      setCustomers(data.customers);
-    }
-  }, [data]);
 
   const handleStatusChange = async (index, newStatus) => {
     try {
@@ -51,46 +38,46 @@ const Customer = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="m-2">
+      <div className="m-2 w-full">
         {customers.map((customer, index) => (
           <div
             key={index}
-            className="gap-x-6 p-4 flex h-auto text-left my-2 shadow-lg rounded-3xl bg-white font-nunito"
+            className="flex flex-col md:flex-row md:gap-x-6 p-4 h-auto text-left my-2 shadow-lg rounded-3xl bg-white font-nunito"
           >
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Hat</div>
               <div className="mt-2 text-gray-900">{`T${customer.hatNumber}`}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Repair Order</div>
               <div className="mt-2 text-gray-900">{customer.repairOrder}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Opened</div>
               <div className="mt-2 text-gray-900">{formatTime(customer.openedAt)}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Customer Name</div>
               <div className="mt-2 text-gray-900">{customer.customerName}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Vehicle Model</div>
               <div className="mt-2 text-gray-900">{customer.vehicle}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Contact</div>
               <div className="mt-2 text-gray-900">{customer.contact}</div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <div className="mt-1 text-gray-400">Priority</div>
               <div className={`mt-2 ${customer.priority === 'Waiter' ? 'text-yellow-700' : 'text-gray-900'}`}>
                 {customer.priority}
               </div>
             </div>
-            <div>
+            <div className="flex justify-between md:block">
               <Dropdown 
                 status={customer.status} 
-                onStatusChange={(newStatus) => handleStatusChange(index, newStatus,)} 
+                onStatusChange={(newStatus) => handleStatusChange(index, newStatus)} 
               />
             </div>
           </div>
