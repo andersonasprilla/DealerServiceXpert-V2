@@ -4,11 +4,13 @@ import './index.css';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Finished from './pages/Finished';
 
 import { Provider } from 'react-redux';
 import store from './store';
 
 import App from './App';
+import SpecialOrderParts from './pages/SpecialOrderParts';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <Dashboard />
+      },
+      {
+        path: 'finished',
+        element: <Finished />
+      },
+      {
+        path: 'special-order-parts',
+        element: <SpecialOrderParts />
       },
     ]
   }
