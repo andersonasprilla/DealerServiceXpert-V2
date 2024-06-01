@@ -12,14 +12,14 @@ const InfoBar = () => {
   };
 
   return (
-    <div className="flex items-center place-content-center gap-x-56 p-5">
-      <div>
-        <h1 className="text-3xl font-semibold leading-6 text-gray-900">Active Repair Orders ({customerCount})</h1>
+    <div className="flex flex-col md:flex-row items-center justify-between p-5 gap-y-4 md:gap-y-0">
+      <div className="text-center md:text-left">
+        <h1 className="text-xl md:text-3xl font-semibold leading-6 text-gray-900">Active Repair Orders ({customerCount})</h1>
       </div>
       <div>
         <Button onClick={handleAddCustomerClick}> + Add Customer</Button>
       </div>
-      {showModal && <Modal showModal ={showModal} setShowModal = {setShowModal}/>}
+      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
     </div>
   );
 };

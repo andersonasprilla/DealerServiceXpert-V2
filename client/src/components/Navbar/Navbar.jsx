@@ -12,7 +12,7 @@ const userNavigation = [
 
 const Navbar = () => {
   return (
-    <div className="justify-center items-center">
+    <div className="justify-center items-center px-4">
       <div className="rounded-3xl flex h-16 items-center border-b border-gray-200 bg-white px-4 shadow-sm">
         {/* Separator */}
         <div className="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
