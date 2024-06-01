@@ -108,7 +108,7 @@ const AddUserModal = ({ isOpen, onClose }) => {
                   </button>
                   <button
                     type="submit"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-800 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Add User
                   </button>

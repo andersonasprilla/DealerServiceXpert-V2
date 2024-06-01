@@ -66,8 +66,8 @@ const Sidebar = () => {
                       onClick={() => handleNavigation(item.href)}
                       className={classNames(
                         item.current
-                          ? 'bg-gray-800 text-white'
-                          : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                          ? 'bg-indigo-800 text-white'
+                          : 'text-gray-400 hover:text-white hover:bg-indigo-800',
                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                       )}
                     >
@@ -87,7 +87,7 @@ const Sidebar = () => {
             <li className="mt-auto">
               <button
                 onClick={handleLogout}
-                className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
+                className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-indigo-800 hover:text-white"
               >
                 <ArrowLeftOnRectangleIcon
                   className="h-6 w-6 shrink-0 text-gray-200 group-hover:text-white"
@@ -103,7 +103,7 @@ const Sidebar = () => {
       <div className="lg:hidden">
         <button
           type="button"
-          className="p-4 bg-gray-800 text-white rounded-md"
+          className="p-4 bg-indigo-800 text-white rounded-md"
           onClick={() => setSidebarOpen(true)}
         >
           <Bars3Icon className="h-6 w-6" />
@@ -165,8 +165,8 @@ const Sidebar = () => {
                                   onClick={() => handleNavigation(item.href)}
                                   className={classNames(
                                     item.current
-                                      ? 'bg-gray-800 text-white'
-                                      : 'text-gray-400 hover:text-white hover:bg-gray-800',
+                                      ? 'bg-indigo-800 text-white'
+                                      : 'text-gray-400 hover:text-white hover:bg-indigo-800',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
