@@ -23,7 +23,7 @@ const Hat = ({ value, onChange }) => {
       };
 
     return (     
-        <div className="w-full max-w-xs">
+        <div className="w-1">
             <Input
                 className="focus:ring-transparent"
                 label="Hat"

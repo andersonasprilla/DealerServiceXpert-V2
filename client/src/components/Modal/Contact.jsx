@@ -29,7 +29,7 @@ const Contact = ({ value, onChange }) => {
   };
 
   return (
-    <div>
+    <div className='w-1'>
       <Input
         type="text"
         value={inputValue}
