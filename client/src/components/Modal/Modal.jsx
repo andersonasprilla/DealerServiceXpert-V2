@@ -1,19 +1,22 @@
-import { useState } from 'react'
-import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
-import Contact from './Contact'
-import HatNumber from './Hat'
-import RepairOrder from './RepairOrder'
-import CustomerName from './CustomerName'
-import Vehicle from './Vehicle'
-import Priority from './Priority'
-
-import { useMutation } from '@apollo/client'
-import { ADD_CUSTOMER } from '../../utils/mutations'
-import { QUERY_CUSTOMER } from '../../utils/queries'
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Button,
+} from "@material-tailwind/react";
+import Contact from './Contact';
+import HatNumber from './Hat';
+import RepairOrder from './RepairOrder';
+import CustomerName from './CustomerName';
+import Vehicle from './Vehicle';
+import Priority from './Priority';
+import { useMutation } from '@apollo/client';
+import { ADD_CUSTOMER } from '../../utils/mutations';
+import { QUERY_CUSTOMER } from '../../utils/queries';
 
 const Modal = ({ showModal, setShowModal }) => {
-  const [open, setOpen] = useState(true)
-
   const [formData, setFormData] = useState({
     hatNumber: '',
     repairOrder: '',
@@ -23,7 +26,7 @@ const Modal = ({ showModal, setShowModal }) => {
     priority: 'Drop Off',  // Default value
   });
 
-  const [addCustomer, { loading, error}] = useMutation(ADD_CUSTOMER, {
+  const [addCustomer, { loading, error }] = useMutation(ADD_CUSTOMER, {
     refetchQueries: [QUERY_CUSTOMER, "Customers"]
   });
 
@@ -55,57 +58,37 @@ const Modal = ({ showModal, setShowModal }) => {
         },
       });
       setShowModal(false);
-      setOpen(false);
     } catch (error) {
       console.error('Error adding customer:', error);
     }
   };
 
-
   return (
-    <Transition show={open}>
-      <Dialog className="relative z-10" onClose={() => setOpen(false)}>
-        <TransitionChild
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </TransitionChild>
-
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <TransitionChild
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <DialogPanel className=" justify-items-center min-w-max relative transform overflow-hidden rounded-3xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-
-                <form className='flex gap-x-5' onSubmit={handleSubmit}>
-                  <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
+    <Dialog open={showModal} handler={() => setShowModal(false)}>
+      <DialogHeader>Add New Customer</DialogHeader>
+      <DialogBody>
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+        <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
                   <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
                   <CustomerName value={formData.customerName} onChange={handleInputChange} />
                   <Vehicle value={formData.vehicle} onChange={handleInputChange} />
                   <Contact value={formData.contact} onChange={handleInputChange} />
                   <Priority value={formData.priority} onChange={handleInputChange} />
                   <button type="submit" style={{ display: 'none' }}></button>
-                </form>
-                {loading && <p>Loading...</p>}
-                {error && <p>Error: {error.message}</p>}
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </div>
-      </Dialog>
-    </Transition>
-  )
-}
+        </form>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error.message}</p>}
+      </DialogBody>
+      {/* <DialogFooter>
+        <Button variant="text" color="red" onClick={() => setShowModal(false)} className="mr-1">
+          <span>Cancel</span>
+        </Button>
+        <Button variant="gradient" color="green" onClick={handleSubmit}>
+          <span>Confirm</span>
+        </Button>
+      </DialogFooter> */}
+    </Dialog>
+  );
+};
 
-export default Modal
+export default Modal;

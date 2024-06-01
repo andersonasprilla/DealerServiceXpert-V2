@@ -23,7 +23,7 @@ const RepairOrder = ({ value, onChange }) => {
   };
 
   return (
-    <div>
+    <div className="w-1">
       <Input
         type="text"
         className="focus:ring-transparent"
