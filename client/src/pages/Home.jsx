@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
-export default function Home(props) {
+export default function Home() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
   const navigate = useNavigate();
@@ -33,12 +33,15 @@ export default function Home(props) {
   };
 
   return (
-    <div className="p-10 bg-gray-200 flex shadow-lg h-dvh " >
-      <div className="flex  flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+    <div className="p-10 bg-gray-200 flex flex-col lg:flex-row shadow-lg h-dvh">
+      <div className="w-full lg:hidden mb-8">
+        <img src={logo} alt="logo" className="w-full h-auto object-cover"/>
+      </div>
+      <div className="flex flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your dealership's account
+              Sign in to your dealer account
             </h2>
             <p className="mt-2 text-sm leading-6 text-gray-500">
               Enter your corporate email to sign in
@@ -121,3 +124,10 @@ export default function Home(props) {
     </div>
   );
 }
+
+
+
+
+
+
+
