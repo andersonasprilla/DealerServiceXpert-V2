@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogHeader,
@@ -13,6 +13,7 @@ import Priority from './Priority';
 import { useMutation } from '@apollo/client';
 import { ADD_CUSTOMER } from '../../utils/mutations';
 import { QUERY_CUSTOMER } from '../../utils/queries';
+import './custom.css';
 
 const Modal = ({ showModal, setShowModal, size }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const Modal = ({ showModal, setShowModal, size }) => {
     customerName: '',
     vehicle: '',
     contact: '',
-    priority: 'Drop Off',  // Default value
+    priority: 'Drop Off',
   });
 
   const [addCustomer, { loading, error }] = useMutation(ADD_CUSTOMER, {
@@ -61,18 +62,32 @@ const Modal = ({ showModal, setShowModal, size }) => {
     }
   };
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [setShowModal]);
+
   return (
-    <Dialog open={showModal} handler={() => setShowModal(false)} size={size}>
-      <DialogHeader className="mx-20">Add New Customer</DialogHeader>
-      <DialogBody className="mx-20 justify-center">
-        <form className='flex flex-col gap-4 w-100' onSubmit={handleSubmit}>
+    <Dialog open={showModal} handler={() => {}} size={size} dismiss={{ escapeKey: true }}>
+      <DialogHeader className="text-2xl font-semibold text-gray-800 flex justify-center">Add New Customer</DialogHeader>
+      <DialogBody className="flex justify-center p-6 bg-white rounded-lg shadow-lg">
+        <form className='flex flex-col gap-4 w-full' onSubmit={handleSubmit}>
           <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
           <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
           <CustomerName value={formData.customerName} onChange={handleInputChange} />
           <Vehicle value={formData.vehicle} onChange={handleInputChange} />
           <Contact value={formData.contact} onChange={handleInputChange} />
           <Priority value={formData.priority} onChange={handleInputChange} />
-          <button type="submit" style={{ display: 'none' }}></button>
+          <button type="submit" className="hidden"></button>
         </form>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}

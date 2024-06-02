@@ -38,8 +38,6 @@ mutation UpdateCustomerStatus($customerId: ID!, $status: String!) {
 `;
 export const DELETE_USER= gql`
 mutation DeleteUser($userId: ID!) {
-    deleteUser(userId: $userId) {
-      message
-    }
-  }`;
+  deleteUser(userId: $userId)
+}`;
 

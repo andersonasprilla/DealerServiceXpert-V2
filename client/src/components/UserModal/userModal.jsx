@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import { QUERY_USER } from '../../utils/queries';
-import { Transition } from '@headlessui/react';
+import { Dialog, DialogHeader, DialogBody } from '@material-tailwind/react';
 
 const AddUserModal = ({ isOpen, onClose }) => {
-  const [addUser] = useMutation(ADD_USER, {
+  const [addUser, { loading, error }] = useMutation(ADD_USER, {
     refetchQueries: [{ query: QUERY_USER }]
   });
 
@@ -15,10 +15,25 @@ const AddUserModal = ({ isOpen, onClose }) => {
     email: '',
     password: ''
   });
+  
+  const [errors, setErrors] = useState({
+    userName: false,
+    role: false,
+    email: false,
+    password: false
+  });
 
-  const handleChange = (e) => {
+  const handleInput = (e) => {
     const { name, value } = e.target;
-    setNewUser({ ...newUser, [name]: value });
+    setNewUser((prevState) => ({ ...prevState, [name]: value }));
+    setErrors((prevState) => ({ ...prevState, [name]: value === '' }));
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    if (newUser[name] === '') {
+      setErrors((prevState) => ({ ...prevState, [name]: true }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -41,84 +56,81 @@ const AddUserModal = ({ isOpen, onClose }) => {
     }
   };
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
+
   return (
-    <Transition show={isOpen} as={React.Fragment}>
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <Transition.Child
-          enter="transition ease-out duration-300"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="transition ease-in duration-200"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
-            <div className="bg-gray-900 p-6">
-              <h2 className="text-2xl font-semibold text-white">Add User</h2>
-            </div>
-            <div className="p-6">
-              <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <label className="block text-gray-700 font-medium">User Name</label>
-                  <input
-                    type="text"
-                    name="userName"
-                    value={newUser.userName}
-                    onChange={handleChange}
-                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 font-medium">Role</label>
-                  <input
-                    type="text"
-                    name="role"
-                    value={newUser.role}
-                    onChange={handleChange}
-                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 font-medium">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={newUser.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 font-medium">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={newUser.password}
-                    onChange={handleChange}
-                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500"
-                  />
-                </div>
-                <div className="flex justify-end space-x-3">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-800 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                  >
-                    Add User
-                  </button>
-                </div>
-              </form>
-            </div>
+    <Dialog open={isOpen} handler={onClose} dismiss={{ escapeKey: true }} size="xs">
+      <DialogHeader className="text-2xl font-semibold text-gray-800 flex justify-center">
+        Add User
+      </DialogHeader>
+      <DialogBody className="flex justify-center p-4 bg-white rounded-lg shadow-lg">
+        <form className="flex flex-col gap-2 w-full rounded-lg" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-gray-700 font-medium">User Name</label>
+            <input
+              type="text"
+              name="userName"
+              value={newUser.userName}
+              onChange={handleInput}
+              onBlur={handleBlur}
+              className="block w-full rounded-lg px-3 py-2 custom-input border border-gray-300 shadow-sm"
+            />
+            {errors.userName && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
           </div>
-        </Transition.Child>
-      </div>
-    </Transition>
+          <div>
+            <label className="block text-gray-700 font-medium">Role</label>
+            <input
+              type="text"
+              name="role"
+              value={newUser.role}
+              onChange={handleInput}
+              onBlur={handleBlur}
+              className="block w-full rounded-lg px-3 py-2 custom-input border border-gray-300 shadow-sm"
+            />
+            {errors.role && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={newUser.email}
+              onChange={handleInput}
+              onBlur={handleBlur}
+              className="block w-full rounded-lg px-3 py-2 custom-input border border-gray-300 shadow-sm"
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={newUser.password}
+              onChange={handleInput}
+              onBlur={handleBlur}
+              className="block w-full rounded-lg px-3 py-2 custom-input border border-gray-300 shadow-sm"
+            />
+            {errors.password && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
+          </div>
+          <button type="submit" className="hidden"></button>
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
+        </form>
+      </DialogBody>
+    </Dialog>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import formatPhoneNumber from '../helper/formatPhoneNumber';
 import { Input } from "@material-tailwind/react";
 
@@ -11,7 +11,6 @@ const Contact = ({ value, onChange }) => {
   }, [value]);
 
   const handleInputChange = (e) => {
-    // Remove all non-numeric characters
     const cleaned = e.target.value.replace(/\D/g, '');
     
     if (cleaned.length <= 10) {
@@ -29,19 +28,20 @@ const Contact = ({ value, onChange }) => {
   };
 
   return (
-    <div className='w-1'>
+    <div className='w-full'>
       <Input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        className="focus:ring-transparent"
+        className={`custom-input ${error ? 'border-red-500' : 'border-gray-300'}`}
         label="Contact"
         error={error}
         autoComplete= "tel"
       />
+      {error && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
     </div>
   );
-}
+};
 
 export default Contact;
