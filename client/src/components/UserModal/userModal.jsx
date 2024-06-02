@@ -38,6 +38,12 @@ const AddUserModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const hasEmptyFields = Object.values(newUser).some(value => value === '');
+    if (hasEmptyFields) {
+      window.alert('Please fill out all fields before submitting.');
+      return;
+    }
+    
     try {
       await addUser({
         variables: {
