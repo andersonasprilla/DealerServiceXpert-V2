@@ -5,10 +5,12 @@ import { useSelector } from 'react-redux';
 
 const InfoBar = () => {
   const [showModal, setShowModal] = useState(false);
+  const [size, setSize] = useState(null);
   const customerCount = useSelector((state) => state.customer.customerCount);
 
-  const handleAddCustomerClick = () => {
+  const handleAddCustomerClick = (value) => {
     setShowModal(true);
+    setSize(value);
   };
 
   return (
@@ -17,9 +19,9 @@ const InfoBar = () => {
         <h1 className="text-xl md:text-3xl font-semibold leading-6 text-gray-900">Active Repair Orders ({customerCount})</h1>
       </div>
       <div>
-        <Button onClick={handleAddCustomerClick}> + Add Customer</Button>
+        <Button onClick={() => handleAddCustomerClick("xs")}> + Add Customer</Button>
       </div>
-      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
+      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} size={size} />}
     </div>
   );
 };

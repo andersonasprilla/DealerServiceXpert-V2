@@ -10,7 +10,7 @@ const Priority = ({ value, onChange }) => {
   };
 
   return (
-    <div>
+    <div className='w-1'>
       <Checkbox 
         label="Waiter" 
         checked={isChecked}
