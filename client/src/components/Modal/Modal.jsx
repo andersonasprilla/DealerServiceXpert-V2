@@ -3,8 +3,6 @@ import {
   Dialog,
   DialogHeader,
   DialogBody,
-  DialogFooter,
-  Button,
 } from "@material-tailwind/react";
 import Contact from './Contact';
 import HatNumber from './Hat';
@@ -16,7 +14,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_CUSTOMER } from '../../utils/mutations';
 import { QUERY_CUSTOMER } from '../../utils/queries';
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({ showModal, setShowModal, size }) => {
   const [formData, setFormData] = useState({
     hatNumber: '',
     repairOrder: '',
@@ -64,29 +62,21 @@ const Modal = ({ showModal, setShowModal }) => {
   };
 
   return (
-    <Dialog open={showModal} handler={() => setShowModal(false)}>
-      <DialogHeader>Add New Customer</DialogHeader>
-      <DialogBody>
+    <Dialog open={showModal} handler={() => setShowModal(false)} size={size}>
+      <DialogHeader className="ml-22">Add New Customer</DialogHeader>
+      <DialogBody className=" justify-center">
         <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
-                  <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
-                  <CustomerName value={formData.customerName} onChange={handleInputChange} />
-                  <Vehicle value={formData.vehicle} onChange={handleInputChange} />
-                  <Contact value={formData.contact} onChange={handleInputChange} />
-                  <Priority value={formData.priority} onChange={handleInputChange} />
-                  <button type="submit" style={{ display: 'none' }}></button>
+          <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
+          <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
+          <CustomerName value={formData.customerName} onChange={handleInputChange} />
+          <Vehicle value={formData.vehicle} onChange={handleInputChange} />
+          <Contact value={formData.contact} onChange={handleInputChange} />
+          <Priority value={formData.priority} onChange={handleInputChange} />
+          <button type="submit" style={{ display: 'none' }}></button>
         </form>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
       </DialogBody>
-      {/* <DialogFooter>
-        <Button variant="text" color="red" onClick={() => setShowModal(false)} className="mr-1">
-          <span>Cancel</span>
-        </Button>
-        <Button variant="gradient" color="green" onClick={handleSubmit}>
-          <span>Confirm</span>
-        </Button>
-      </DialogFooter> */}
     </Dialog>
   );
 };
