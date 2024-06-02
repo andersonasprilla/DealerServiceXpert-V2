@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
 
 const Vehicle = ({ value, onChange }) => {
@@ -23,16 +23,17 @@ const Vehicle = ({ value, onChange }) => {
   };
 
   return (
-    <div className="w-1">
+    <div className="w-full">
       <Input
         type="text"
-        className="focus:ring-transparent"
+        className={`custom-input ${error ? 'border-red-500' : 'border-gray-300'}`}
         label="Vehicle"
         value={inputValue}
         error={error}
         onInput={handleInput}
         onBlur={handleBlur}
       />
+      {error && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
     </div>
   );
 };

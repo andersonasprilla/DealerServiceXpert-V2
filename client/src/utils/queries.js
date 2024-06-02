@@ -16,6 +16,7 @@ query Customers {
 export const QUERY_USER =gql`
 query Users {
   users {
+    _id
     userName
     role
     email

@@ -37,12 +37,9 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addCustomer(hatNumber: String!, repairOrder: String!, customerName: String!, vehicle: String!, contact: String!, priority: String!): Customer
   updateCustomerStatus(customerId: ID!, status: String!): Customer
-  deleteUser(userId: ID!): DeleteUserResponse
+  deleteUser(userId: ID!): Boolean
 }
 
-type DeleteUserResponse {
-  message: String!
-}
 `;
 
 module.exports = typeDefs;
