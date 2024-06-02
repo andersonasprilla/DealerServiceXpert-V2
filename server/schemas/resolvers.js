@@ -39,7 +39,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    
     addCustomer: async (parent, { hatNumber, repairOrder, customerName, vehicle, contact, priority }, context) => {
       if (context.user) {
         const customer = await Customer.create({ hatNumber, repairOrder, customerName, vehicle, contact, priority });
@@ -48,8 +47,6 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-
-
     updateCustomerStatus: async (parent, { customerId, status }, context) => {
       if (context.user) {
         const validStatuses = ['In Repair', 'Finished', 'Back Order'];
@@ -67,11 +64,17 @@ const resolvers = {
         if (!user) {
           throw new AuthenticationError('User not found');
         }
-        for (const customerId of user.customers) {
-          await Customer.findByIdAndUpdate(customerId, { user: null });
+
+        const customers = await Customer.find({ user: userId });
+
+        for (const customer of customers) {
+          customer.user = null;
+          await customer.save();
         }
+
         await User.findByIdAndDelete(userId);
-        return { message: `User with id ${userId} deleted` };
+
+        return true;
       }
       throw new AuthenticationError('Not authorized');
     },

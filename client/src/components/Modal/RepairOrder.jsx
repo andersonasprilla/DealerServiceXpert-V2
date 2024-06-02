@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@material-tailwind/react";
 
 const RepairOrder = ({ value, onChange }) => {
@@ -23,10 +23,10 @@ const RepairOrder = ({ value, onChange }) => {
   };
 
   return (
-    <div className="w-1">
+    <div className="w-full">
       <Input
         type="text"
-        className="focus:ring-transparent"
+        className={`custom-input ${error ? 'border-red-500' : 'border-gray-300'}`}
         label="Repair Order"
         pattern="\d{6}"
         maxLength="6"
@@ -35,6 +35,7 @@ const RepairOrder = ({ value, onChange }) => {
         onInput={handleInput}
         onBlur={handleBlur}
       />
+      {error && <p className="text-red-500 text-sm mt-1">This field is required.</p>}
     </div>
   );
 };

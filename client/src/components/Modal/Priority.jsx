@@ -1,4 +1,3 @@
-import React from 'react';
 import { Checkbox } from "@material-tailwind/react";
 
 const Priority = ({ value, onChange }) => {
@@ -10,7 +9,7 @@ const Priority = ({ value, onChange }) => {
   };
 
   return (
-    <div className='w-1'>
+    <div className='w-full'>
       <Checkbox 
         label="Waiter" 
         checked={isChecked}
@@ -18,6 +17,6 @@ const Priority = ({ value, onChange }) => {
       />
     </div>
   );
-}
+};
 
 export default Priority;
