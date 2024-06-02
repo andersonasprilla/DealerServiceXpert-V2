@@ -38,7 +38,7 @@ export default function Home(props) {
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
             <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your dealer account
+              Sign in to your dealership's account
             </h2>
             <p className="mt-2 text-sm leading-6 text-gray-500">
               Enter your corporate email to sign in
