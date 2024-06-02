@@ -33,6 +33,12 @@ const Dashboard = () => {
   const checkedInCustomers = data.customers.filter(customer => customer.status === "Checked In");
   const inRepairCustomers = data.customers.filter(customer => customer.status === "In Repair");
 
+  const EmptyMessage = ({ message }) => (
+    <div className="flex flex-col md:flex-row md:gap-x-6 p-4 h-auto text-left my-2 shadow-lg rounded-3xl bg-white font-nunito items-center justify-center">
+      <p className="text-gray-600 text-lg">{message}</p>
+    </div>
+  );
+
   return (
     <>
       <div className="flex bg-light-blue p-5 gap-x-7 justify-center h-screen">
@@ -41,8 +47,16 @@ const Dashboard = () => {
           <Navbar />
           <InfoBar />
           <div className="overflow-y-auto h-[800px]">
-            <Customer customers={checkedInCustomers} />
-            <Customer customers={inRepairCustomers} />
+            {checkedInCustomers.length > 0 ? (
+              <Customer customers={checkedInCustomers} />
+            ) : (
+              <EmptyMessage message="No Checked In Customers " />
+            )}
+            {inRepairCustomers.length > 0 ? (
+              <Customer customers={inRepairCustomers} />
+            ) : (
+              <EmptyMessage message="No Customers In Repair" />
+            )}
           </div>
         </div>
       </div>
