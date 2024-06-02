@@ -12,6 +12,12 @@ const SpecialOrderParts = () => {
 
   const backOrderCustomers = data.customers.filter(customer => customer.status === "Back Order");
 
+  const EmptyMessage = ({ message }) => (
+    <div className="flex flex-col md:flex-row md:gap-x-6 p-4 h-auto text-left my-2 shadow-lg rounded-3xl bg-white font-nunito items-center justify-center">
+      <p className="text-gray-600 text-lg">{message}</p>
+    </div>
+  );
+
   return (
     <>
       <div className="flex bg-light-blue p-5 gap-x-7 justify-center h-screen">
@@ -20,7 +26,11 @@ const SpecialOrderParts = () => {
           <Navbar />
           <InfoBar />
           <div className="overflow-y-auto h-[800px]">
-            <Customer customers={backOrderCustomers} />
+            {backOrderCustomers.length > 0 ? (
+              <Customer customers={backOrderCustomers} />
+            ) : (
+              <EmptyMessage message="No Customers, Click Add Customer Button" />
+            )}
           </div>
         </div>
       </div>

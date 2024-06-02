@@ -12,6 +12,12 @@ const Finished = () => {
 
   const finishedCustomers = data.customers.filter(customer => customer.status === "Finished");
 
+  const EmptyMessage = ({ message }) => (
+    <div className="flex flex-col md:flex-row md:gap-x-6 p-4 h-auto text-left my-2 shadow-lg rounded-3xl bg-white font-nunito items-center justify-center">
+      <p className="text-gray-600 text-lg">{message}</p>
+    </div>
+  );
+
   return (
     <>
       <div className="flex bg-light-blue p-5 gap-x-7 justify-center h-screen">
@@ -20,7 +26,11 @@ const Finished = () => {
           <Navbar />
           <InfoBar />
           <div className="overflow-y-auto h-[800px]">
-            <Customer customers={finishedCustomers} />
+            {finishedCustomers.length > 0 ? (
+              <Customer customers={finishedCustomers} />
+            ) : (
+              <EmptyMessage message="No Finished Customers" />
+            )}
           </div>
         </div>
       </div>
