@@ -45,6 +45,7 @@ const Modal = ({ showModal, setShowModal, size }) => {
       alert('Please fill out all fields.');
       return;
     }
+    
     try {
       const { data } = await addCustomer({
         variables: {
