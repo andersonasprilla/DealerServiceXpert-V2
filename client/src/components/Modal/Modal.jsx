@@ -63,9 +63,9 @@ const Modal = ({ showModal, setShowModal, size }) => {
 
   return (
     <Dialog open={showModal} handler={() => setShowModal(false)} size={size}>
-      <DialogHeader className="ml-22">Add New Customer</DialogHeader>
-      <DialogBody className=" justify-center">
-        <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+      <DialogHeader className="mx-20">Add New Customer</DialogHeader>
+      <DialogBody className="mx-20 justify-center">
+        <form className='flex flex-col gap-4 w-100' onSubmit={handleSubmit}>
           <HatNumber value={formData.hatNumber} onChange={handleInputChange} />
           <RepairOrder value={formData.repairOrder} onChange={handleInputChange} />
           <CustomerName value={formData.customerName} onChange={handleInputChange} />
