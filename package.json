@@ -22,6 +22,7 @@
     "@apollo/server": "^4.10.4",
     "@tailwindcss/forms": "^0.5.7",
     "apollo-server-express": "^3.13.0",
+    "dotenv": "^16.4.5",
     "react-router-dom": "^6.23.1",
     "style-components": "^0.1.0"
   }
