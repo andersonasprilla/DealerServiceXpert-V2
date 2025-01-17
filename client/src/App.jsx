@@ -73,9 +73,9 @@
 import { motion } from 'framer-motion'
 import Hero from './components/Hero'
 import Features from './components/Features'
-import Testimonials from './components/Testimonials'
 import CTA from './components/CTA'
-
+import Footer from './components/Footer'
+import AIDemo from './components/AIDemo'
 export default function App() {
   return (
     <motion.div
@@ -86,8 +86,9 @@ export default function App() {
     >
       <Hero />
       <Features />
-      <Testimonials />
+      <AIDemo />
       <CTA />
+      <Footer />
     </motion.div>
   )
 }

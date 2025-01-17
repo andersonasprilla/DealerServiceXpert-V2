@@ -14,7 +14,7 @@ export default function Hero() {
           variants={variants}
           className="text-5xl md:text-7xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
         >
-          RevAI: Your Dealership's AI Assistant
+          DSxpertAI: Your Dealership's AI Assistant
         </motion.h1>
         <motion.p
           initial="hidden"
