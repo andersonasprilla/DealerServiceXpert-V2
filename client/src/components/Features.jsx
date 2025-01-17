@@ -1,57 +1,49 @@
+import { motion } from 'framer-motion'
+import { useAnimations } from '../hooks/useAnimations'
+import { Cpu, BarChart2, Users } from 'lucide-react'
 
-function FeatureCard({ icon, title, description }) {
-  return (
-    <div className="feature-card">
-      <div className="icon">{icon}</div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-  );
-}
+const features = [
+  {
+    icon: <Cpu className="w-12 h-12 text-blue-600" />,
+    title: 'AI-Powered Insights',
+    description: 'Leverage advanced machine learning algorithms to gain valuable insights into your dealership\'s performance and customer behavior.',
+  },
+  {
+    icon: <BarChart2 className="w-12 h-12 text-purple-600" />,
+    title: 'Sales Optimization',
+    description: 'Optimize your sales process with AI-driven recommendations and predictive analytics.',
+  },
+  {
+    icon: <Users className="w-12 h-12 text-green-600" />,
+    title: 'Enhanced Customer Experience',
+    description: 'Provide personalized experiences to your customers with AI-powered chatbots and recommendation engines.',
+  },
+]
 
-function Features() {
+export default function Features() {
+  const { ref, controls, variants } = useAnimations()
+
   return (
-    <section className="features" id="features">
-      <div className="container">
-        <h2>Key Features</h2>
-        <div className="feature-grid">
-          <FeatureCard
-            icon={
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
-              </svg>
-            }
-            title="Intelligent Analytics"
-            description="Gain deep insights into your dealership's performance with AI-driven analytics and reporting."
-          />
-          <FeatureCard
-            icon={
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-            }
-            title="Customer Relationship Management"
-            description="Enhance customer interactions and boost satisfaction with our AI-powered CRM system."
-          />
-          <FeatureCard
-            icon={
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-            }
-            title="Fraud Detection"
-            description="Protect your dealership with advanced AI algorithms that detect and prevent fraudulent activities."
-          />
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Powerful Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial="hidden"
+              animate={controls}
+              variants={variants}
+              className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2"
+            >
+              <div className="flex justify-center mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold text-center mb-2">{feature.title}</h3>
+              <p className="text-gray-600 text-center">{feature.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
-
-export default Features;
 

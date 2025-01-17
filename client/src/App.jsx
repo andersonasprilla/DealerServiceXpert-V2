@@ -44,27 +44,53 @@
 
 // export default App;
 
-import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
-import './App.css';
+// import React from 'react';
+// import Header from './components/Header';
+// import Hero from './components/Hero';
+// import Features from './components/Features';
+// import CTA from './components/CTA';
+// import Footer from './components/Footer';
+// import './App.css';
 
-function App() {
+// function App() {
+//   return (
+//     <div className="App">
+//       <Header />
+//       <main>
+//         <Hero />
+//         <Features />
+//         <CTA />
+//       </main>
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+import { motion } from 'framer-motion'
+import Hero from './components/Hero'
+import Features from './components/Features'
+import Testimonials from './components/Testimonials'
+import CTA from './components/CTA'
+
+export default function App() {
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Hero />
-        <Features />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
-  );
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 text-gray-800"
+    >
+      <Hero />
+      <Features />
+      <Testimonials />
+      <CTA />
+    </motion.div>
+  )
 }
 
-export default App;
+
 
