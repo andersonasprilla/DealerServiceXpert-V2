@@ -22,7 +22,7 @@ export default function CTA() {
           variants={variants}
           className="text-xl mb-8 max-w-2xl mx-auto"
         >
-          Join the AI revolution and take your dealership to the next level. Get started with RevAI today!
+          Join the AI revolution and take your dealership to the next level. Get started with DsxpertAI today!
         </motion.p>
         <motion.div
           initial="hidden"
