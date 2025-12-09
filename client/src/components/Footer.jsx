@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="mb-8 md:mb-0">
-            <h3 className="text-xl font-bold mb-4">DSxpertAI</h3>
+            <h3 className="text-xl font-bold mb-4">DSxpert</h3>
             <p className="text-gray-400">Revolutionizing dealerships with AI-powered solutions.</p>
           </div>
           <div>
@@ -22,7 +22,7 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2">
-              <li className="text-gray-400">contact@dsxpertai.com</li>
+              <li className="text-gray-400">luisasprilla@dsxpert.com</li>
             </ul>
           </div>
           <div>
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-10 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Anderson Solutions. All rights reserved.</p>
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Luis Asprilla. All rights reserved.</p>
           <div className="flex space-x-4">
             <Button variant="link" className="text-gray-400 hover:text-white">Privacy Policy</Button>
             <Button variant="link" className="text-gray-400 hover:text-white">Terms of Service</Button>
