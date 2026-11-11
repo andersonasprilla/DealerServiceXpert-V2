@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon",
-    "seed": "node seeders/seeds.js"
+    "seed": "node seeders/seeds.js",
+    "test:security": "node --test test/mongoose-security.test.cjs",
+    "test": "node --test test/*.test.cjs"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +19,7 @@
     "express": "^4.17.2",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^8.0.0",
+    "mongoose": "^8.24.3",
     "stripe": "^8.67.0"
   },
   "devDependencies": {
