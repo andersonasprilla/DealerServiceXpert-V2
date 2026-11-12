@@ -19,7 +19,7 @@
     "express": "^4.17.2",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^8.24.3",
+    "mongoose": "^8.24.8",
     "stripe": "^8.67.0"
   },
   "devDependencies": {
